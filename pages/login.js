@@ -1,9 +1,17 @@
 import {getProviders,signIn} from 'next-auth/react'
+import Image from 'next/image'
+import Head from 'next/head'
 function Login({providers}) {
     return (
-        
+        <>
+        <Head>
+        <title>Spotify V2</title>
+        <link rel="icon" href="/favicon.png"/>
+        </Head>
         <div className="flex flex-col items-center min-h-screen w-full justify-center">
-            <img className="w-52 mb-5" src="/favicon.png"/>
+            <div className="mb-5 relative">
+            <Image width={256} height={256} src="https://www.iconsdb.com/icons/preview/black/spotify-xxl.png" alt="spotify logo" />
+            </div>
              
             {Object.values(providers).map((provider)=>(
                 <div key={provider.name}>
@@ -13,6 +21,7 @@ function Login({providers}) {
                 </div>
             ))}
         </div>
+        </>
     )
 }
 
