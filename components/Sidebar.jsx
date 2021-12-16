@@ -2,22 +2,23 @@ import {HomeIcon, SearchIcon,LibraryIcon,PlusCircleIcon,RssIcon,HeartIcon} from 
 import {signOut,useSession} from "next-auth/react"
 import {useState} from 'react'
 import { useEffect } from "react/cjs/react.development";
-import spotifyAPI from "../lib/spotify";
+import useSpotify from "../hooks/useSpotify";
+
+
 function Sidebar() {
 
     const {data:session,status}=useSession();
     const [playlists,setPlaylists]=useState([])
-    
+    const spotifyApi=useSpotify()
     useEffect(()=>{
-        if(spotifyAPI.getAccessToken()){
-           spotifyAPI.getUserPlaylists().then((data)=>{
-               setPlaylists(data.body.items)
+        if(spotifyApi.getAccessToken()){
+           spotifyApi.getUserPlaylists().then((data)=>{
+            console.log(data.body)   
+            setPlaylists(data.body.items)
            })
         }
-    },[session,spotifyAPI])
-
-    console.log(playlists)
-
+    },[session,spotifyApi])
+    
     return (
         <div className="text-gray-500 p-5 text-sm border-r
          border-gray-900 overflow-y-scroll scrollbar-hide h-screen">
@@ -54,13 +55,13 @@ function Sidebar() {
             <hr className="border-t-[0.1px] border-gray-900"/>
             
             {/* Playlist... */}
-            {
+            {/* {
              playlists.map((playlist)=>{
               <p key={playlist.id} className="cursor-pointer hover:text-white">
                 {playlist.name}
               </p>
              })
-            }
+            } */}
             </div>
         </div>
     )
