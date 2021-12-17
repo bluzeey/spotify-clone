@@ -1,4 +1,4 @@
-import {currentTrackIdState,isPlayingState} from '../atoms/songAtom'
+import {currentTrackIdState} from '../atoms/songAtom'
 import { useState,useEffect } from 'react';
 import {useRecoilState} from 'recoil'
 import useSpotify from '../hooks/useSpotify'
@@ -21,7 +21,7 @@ function useSongInfo() {
                 setSongInfo(trackInfo);
             }
         }
-        fetchSongInfo()
+        fetchSongInfo();
     },[currentTrackId,spotifyApi])
     
     
