@@ -1,5 +1,5 @@
 import { ChevronDownIcon, UserCircleIcon } from "@heroicons/react/outline";
-import {useSession} from "next-auth/react"
+import {useSession,signOut} from "next-auth/react"
 import {shuffle} from "lodash"
 import {useState,useEffect} from "react"
 import {useRecoilState, useRecoilValue} from 'recoil'
@@ -35,11 +35,11 @@ function Center() {
     },[spotifyApi,playlistId])
     console.log(playlist)
     return (
-        <div className="flex-grow">
+        <div className="flex-grow h-screen overflow-y-scroll scrollbar-hide">
             <header className="absolute top-5 right-8">
                 <div className="flex items-center bg-black text-white
                 space-x-3 opacity-90 hover:opacity-80 cursor-pointer rounded-full 
-                p-1 pr-2">
+                p-1 pr-2" onClick={signOut}>
                     {session?.user?.image ? 
                     <img className="rounded-full w-10 h-10" src={session?.user.image} alt=""/>:
                     <UserCircleIcon className="h-10 w-10"/>}
