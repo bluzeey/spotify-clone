@@ -53,15 +53,14 @@ function Sidebar() {
                 <p>Your Episode</p>
             </button>
             <hr className="border-t-[0.1px] border-gray-900"/>
-            
-            {/* Playlist... */}
-            {/* {
+        
+            {
              playlists.map((playlist)=>{
               <p key={playlist.id} className="cursor-pointer hover:text-white">
                 {playlist.name}
               </p>
              })
-            } */}
+            } 
             </div>
         </div>
     )
